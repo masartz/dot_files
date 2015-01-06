@@ -1,4 +1,4 @@
-PATH=/usr/local/bin:/bin:/usr/bin:
+PATH=/usr/local/bin:/bin:/usr/bin:/sbin:
 export PATH 
 LANG=ja_JP.UTF-8
 export LANG 
@@ -14,6 +14,10 @@ eval "$(rbenv init -)"
 # plenv     
 export PATH="$HOME/.plenv/bin:$PATH"
 eval "$(plenv init -)"
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
 
 #PROMPT='%l %T %m[%h]%# '
 PROMPT='%m[%h]%# '
