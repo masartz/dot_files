@@ -1,0 +1,9 @@
+#
+# .gitconfig
+#
+[user]
+    name = masartz
+    email = masartz@gmail.com
+[alias]
+    co = checkout
+    st = status
