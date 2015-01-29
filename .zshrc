@@ -35,6 +35,10 @@ alias pop="popd"
 alias gp="git pull"
 alias glg="git log --oneline --graph"
 alias ack="ack -C 3"
+alias vup="vagrant up"
+alias vdown="vagrant halt"
+alias vsh="vagrant ssh"
+alias perldoc="perldoc -M Pod::Text::Color::Delight"
             
                         
 fpath=(~/.zsh/functions/Completion ${fpath})
