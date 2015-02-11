@@ -41,7 +41,8 @@ iab SELF my $self = shift;
 iab UBP #!/usr/bin/env perl
 iab USUW use strict;<CR>use warnings;<CR>
 iab DUMP use Data::Dumper;<CR>open(DH,\">>/debug.log\");<CR>print DH Dumper();<CR>close(DH);
-
+iab DUMPH ob_start();<CR>var_dump();<CR>$dump = ob_get_contents();<CR>ob_end_clean();<CR>$fp = fopen('/debug.txt', 'a');<CR>fwrite($fp, $dump);    <CR>fclose($fp);
+iab DUMPR file = File.open("/debug.txt","a")<CR>file.write(p().inspect + "\n")<CR>file.close
 
 "使いやすいキー配置に
 nnoremap k gk
