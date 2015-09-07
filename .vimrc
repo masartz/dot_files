@@ -35,6 +35,10 @@ au BufNewFile,BufRead *.t set filetype=perl
 "http://d.hatena.ne.jp/tokuhirom/20101105/1288931525
 autocmd BufRead *.sql set filetype=mysql
 
+"http://stackoverflow.com/questions/1562633/setting-vim-whitespace-preferences-by-filetype
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+
 iab VARH <TMPL_VAR EXPR="html()">
 iab VARF <TMPL_VAR EXPR="form()">
 iab SELF my $self = shift;
@@ -82,8 +86,23 @@ noremap fn :call Jump2pm('sp')<ENTER>
 "noremap ft :call Jump2pm('tabe')<ENTER>
 "Jump2pm --end
 
+"" typescript --start
+NeoBundle 'https://github.com/leafgarland/typescript-vim.git'
+NeoBundle 'https://github.com/clausreinke/typescript-tools.vim'
+" 後処理
+" mkdir ~/.vim/ftdetect
+" vim ~/.vim/ftdetect/typescript.vim
+" au BufRead,BufNewFile *.ts  set filetype=typescript
+" from http://by-ki.blogspot.jp/2012/10/vim-syntax.html
+"" typescript --end
 
+"" ruby-slim --start
+" https://github.com/slim-template/vim-slim
+call pathogen#infect()
 
+syntax enable
+filetype plugin indent on
+"" ruby-slim --end
 
 " UTF-8の□や○でカーソル位置がずれないようにする
 if exists("&ambiwidth")

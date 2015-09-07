@@ -19,11 +19,29 @@ eval "$(plenv init -)"
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 
+### --git branch start
+### http://kitak.hatenablog.jp/entry/2013/05/25/103059
+# VCSの情報を取得するzshの便利関数 vcs_infoを使う
+autoload -Uz vcs_info
+
+# 表示フォーマットの指定
+# %b ブランチ情報
+# %a アクション名(mergeなど)
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
+RPROMPT="%1(v|%F{green}%1v%f|) %~"
+### --git branch end
+
 #PROMPT='%l %T %m[%h]%# '
 PROMPT='%m[%h]%# '
-RPROMPT=' %~'
-                        
-                                    
+#RPROMPT=' %~'
 
 #alias ls='ls --color=auto'
 alias ll="ls -l"
@@ -39,6 +57,7 @@ alias vup="vagrant up"
 alias vdown="vagrant halt"
 alias vsh="vagrant ssh"
 alias perldoc="perldoc -M Pod::Text::Color::Delight"
+alias grep="grep --color=auto"
             
                         
 fpath=(~/.zsh/functions/Completion ${fpath})
