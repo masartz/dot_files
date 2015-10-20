@@ -104,6 +104,15 @@ syntax enable
 filetype plugin indent on
 "" ruby-slim --end
 
+" Markdown for vim --start
+" http://www.key-p.com/blog/staff/archives/9032
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+au BufRead,BufNewFile *.md set filetype=markdown
+" Markdown for vim --end
+
+
 " UTF-8の□や○でカーソル位置がずれないようにする
 if exists("&ambiwidth")
     set ambiwidth=double

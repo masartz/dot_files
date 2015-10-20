@@ -1,4 +1,4 @@
-PATH=/usr/local/bin:/bin:/usr/bin:/sbin:
+PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/sbin:
 export PATH 
 LANG=ja_JP.UTF-8
 export LANG 
