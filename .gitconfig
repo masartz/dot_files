@@ -7,3 +7,11 @@
 [alias]
     co = checkout
     st = status
+    home = checkout master
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+# gitlab設定
+[http]
+        sslverify = false
