@@ -5,7 +5,6 @@ export LANG
 export CLICOLOR=yes
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=''
-export DOCKER_HOST=tcp://localhost:4243
 
 # rbenv     
 export PATH="$HOME/.rbenv/bin:$PATH"
