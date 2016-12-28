@@ -1,10 +1,15 @@
 PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/sbin:
 export PATH 
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
 LANG=ja_JP.UTF-8
 export LANG 
 export CLICOLOR=yes
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=''
+export JAVA_HOME=`/usr/libexec/java_home`
+export GOPATH=$HOME
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 # rbenv     
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -17,6 +22,7 @@ eval "$(plenv init -)"
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+
 
 ### --git branch start
 ### http://kitak.hatenablog.jp/entry/2013/05/25/103059
@@ -57,16 +63,18 @@ alias vdown="vagrant halt"
 alias vsh="vagrant ssh"
 alias perldoc="perldoc -M Pod::Text::Color::Delight"
 alias grep="grep --color=auto"
-            
-                        
+
+# http://qiita.com/dongri/items/7b142c138e650785bd72
+alias date="gdate"
+
 fpath=(~/.zsh/functions/Completion ${fpath})
 #.zshrc ファイルに次の2行を足すだけで、タブキーでファイル名を拾うだけでなくて、コマンドラインオプションも持ってくることができる。
 autoload -U compinit
-compinit    
-            
+compinit
+ 
 #function chpwd() {
 #  _reg_pwd_screennum
-#}           
+#}
 
 # ssh-agent --start
 # http://nekoya.github.io/wiki/ssh-agent.html
@@ -243,8 +251,4 @@ setopt autopushd
 # ファイルリスト補完でもlsと同様に色をつける｡
 
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-
-
-
 

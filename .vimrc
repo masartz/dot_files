@@ -44,9 +44,9 @@ iab VARF <TMPL_VAR EXPR="form()">
 iab SELF my $self = shift;
 iab UBP #!/usr/bin/env perl
 iab USUW use strict;<CR>use warnings;<CR>
-iab DUMP use Data::Dumper;<CR>open(DH,\">>/debug.log\");<CR>print DH Dumper();<CR>close(DH);
-iab DUMPH ob_start();<CR>var_dump();<CR>$dump = ob_get_contents();<CR>ob_end_clean();<CR>$fp = fopen('/debug.txt', 'a');<CR>fwrite($fp, $dump);    <CR>fclose($fp);
-iab DUMPR file = File.open("/debug.txt","a")<CR>file.write(p().inspect + "\n")<CR>file.close
+iab DUMP use Data::Dumper;<CR>open(DH,">>/tmp/debug.txt");<CR>print DH Dumper();<CR>close(DH);
+iab DUMPH ob_start();<CR>var_dump();<CR>$dump = ob_get_contents();<CR>ob_end_clean();<CR>$fp = fopen('/tmp/debug.txt', 'a');<CR>fwrite($fp, $dump);    <CR>fclose($fp);
+iab DUMPR file = File.open('/tmp/debug.txt', 'a')<CR>file.write(p().inspect + "\n")<CR>file.close
 
 "使いやすいキー配置に
 nnoremap k gk
@@ -63,6 +63,36 @@ if has('vim_starting')
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'https://github.com/nakatakeshi/jump2pm.vim.git'
+
+" scala用syntax highlight
+" http://kimikimi714.hatenablog.com/entry/2015/06/05/180000
+NeoBundle 'derekwyatt/vim-scala'
+"NeoBundle --end
+
+" Markdown for vim --start
+" http://www.key-p.com/blog/staff/archives/9032
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+au BufRead,BufNewFile *.md set filetype=markdown
+" Markdown for vim --end
+
+" vim-go
+" http://qiita.com/izumin5210/items/1f3c312edd7f0075b09c
+NeoBundle 'fatih/vim-go'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" syntastic --start
+" http://blog.glidenote.com/blog/2013/03/16/puppet-syntax-check/
+NeoBundle 'scrooloose/syntastic'
+
+
 call neobundle#end()
 
 filetype plugin on
@@ -75,9 +105,7 @@ if neobundle#exists_not_installed_bundles()
   "finish
 endif
 
-NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
 
-"NeoBundle --end
 
 "Jump2pm --start
 noremap fv :call Jump2pm('vne')<ENTER>
@@ -85,16 +113,6 @@ noremap fe :call Jump2pm('e')<ENTER>
 noremap fn :call Jump2pm('sp')<ENTER>
 "noremap ft :call Jump2pm('tabe')<ENTER>
 "Jump2pm --end
-
-"" typescript --start
-NeoBundle 'https://github.com/leafgarland/typescript-vim.git'
-NeoBundle 'https://github.com/clausreinke/typescript-tools.vim'
-" 後処理
-" mkdir ~/.vim/ftdetect
-" vim ~/.vim/ftdetect/typescript.vim
-" au BufRead,BufNewFile *.ts  set filetype=typescript
-" from http://by-ki.blogspot.jp/2012/10/vim-syntax.html
-"" typescript --end
 
 "" ruby-slim --start
 " https://github.com/slim-template/vim-slim
@@ -104,13 +122,23 @@ syntax enable
 filetype plugin indent on
 "" ruby-slim --end
 
-" Markdown for vim --start
-" http://www.key-p.com/blog/staff/archives/9032
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
-au BufRead,BufNewFile *.md set filetype=markdown
-" Markdown for vim --end
+"" type-script start
+"filetype plugin on
+"au BufRead,BufNewFile *.ts        setlocal filetype=typescript
+"set rtp+=/Users/m-hoshino/node_module/typescript-tools.vim/
+"" type-script end
+
+execute pathogen#infect()
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['golint']
+" syntastic --end
 
 
 " UTF-8の□や○でカーソル位置がずれないようにする
