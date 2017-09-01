@@ -8,6 +8,8 @@
     co = checkout
     st = status
     home = checkout master
+    rmb = branch -D
+    bra = branch
 [fetch]
     prune = true
 [filter "media"]
