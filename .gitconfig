@@ -10,6 +10,7 @@
     home = checkout master
     rmb = branch -D
     bra = branch
+    pullre = pull --rebase origin master
 [fetch]
     prune = true
 [filter "media"]
