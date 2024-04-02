@@ -7,9 +7,11 @@ export LANG
 export CLICOLOR=yes
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=''
-export JAVA_HOME=`/usr/libexec/java_home`
 export GOPATH=$HOME
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+# brew for M1 or later Mac 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # rbenv     
 export PATH="$HOME/.rbenv/bin:$PATH"
